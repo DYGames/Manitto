@@ -40,15 +40,17 @@ public class BusinessMng : IListMng
         for (int i = 0; i < 8; i++)
         {
             List<Vector2> requirematerial = new List<Vector2>();
-            requirematerial.Add(new Vector2(1, 1));
-            requirematerial.Add(new Vector2(2, 2));
-            requirematerial.Add(new Vector2(3, 3));
+            for (int j = 0; j < Random.Range(1, 4); j++)
+            {
+                requirematerial.Add(new Vector2(Random.Range(1, 3), Random.Range(0, 16)));
+            }
             List<Vector2> returnmaterial = new List<Vector2>();
-            returnmaterial.Add(new Vector2(4, 4));
-            returnmaterial.Add(new Vector2(5, 5));
-            returnmaterial.Add(new Vector2(6, 6));
 
-            BusinessList.Add(i, new GameBusiness(i, null, i.ToString(), requirematerial, returnmaterial));
+            for (int j = 0; j < Random.Range(1, 4); j++)
+            {
+                returnmaterial.Add(new Vector2(Random.Range(1, 3), Random.Range(0, 16)));
+            }
+            BusinessList.Add(i, new GameBusiness(i, null, i.ToString() + "번째 사업", requirematerial, returnmaterial));
         }
     }
 

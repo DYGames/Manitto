@@ -17,6 +17,7 @@ public class OpenQuest : MonoBehaviour
         QuestImage.sprite = quest.QuestImage;
 
 
+        Debug.Log(quest.RequireMaterial.Count);
         MaterialListHelper requirematerial = transform.GetChild(0).Find("RequireMaterial").GetComponent<MaterialListHelper>();
         requirematerial.materiallist = quest.RequireMaterial;
         MaterialListHelper returnmaterial = transform.GetChild(0).Find("ReturnMaterial").GetComponent<MaterialListHelper>();
@@ -48,7 +49,6 @@ public class OpenQuest : MonoBehaviour
 
         for (int i = 0; i < returnmaterial.Count; i++)
         {
-            Debug.Log("w");
             MaterialMng.Instance.MaterialList[(int)returnmaterial[i].y].qty += (int)returnmaterial[i].x;
         }
 

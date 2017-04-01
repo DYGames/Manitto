@@ -16,7 +16,8 @@ public class People : MonoBehaviour
     float moveddistance;
 
     GameObject QuestionMark;
-    public Quest currentQuest;
+    [HideInInspector]
+   public Quest currentQuest;
 
     SpriteRenderer spriterenderer;
     Sprite front;
@@ -47,6 +48,7 @@ public class People : MonoBehaviour
 
         setRightSprite();
 
+        currentQuest = QuestMng.Instance.QuestList[0];
     }
 
     void Update()
@@ -66,8 +68,8 @@ public class People : MonoBehaviour
         }
 
         Vector3 movevec = directions[currentDirection] * speed * Time.deltaTime * System.Math.Sign(walktime);
-        transform.position += movevec;
 
+        transform.position += movevec;
         moveddistance += movevec.magnitude;
 
         if (moveddistance > 3.95f)
@@ -83,7 +85,7 @@ public class People : MonoBehaviour
 
     void setRightSprite()
     {
-        if(currentDirection == 0)
+        if (currentDirection == 0)
         {
             spriterenderer.sprite = back;
             spriterenderer.flipX = false;
@@ -109,6 +111,22 @@ public class People : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(10, 30));
         QuestionMark.SetActive(true);
+
+        int questn = 0;
+        if (PeriodMng.Instance.currentPeriod == PeriodMng.Period.PRIMITIVE)
+            questn = Random.Range(0, 1);
+        if (PeriodMng.Instance.currentPeriod == PeriodMng.Period.MEDIAVAL)
+            questn = Random.Range(1, 4);
+        if (PeriodMng.Instance.currentPeriod == PeriodMng.Period.MODERN)
+            questn = Random.Range(4, 7);
+        if (PeriodMng.Instance.currentPeriod == PeriodMng.Period.FUTURE)
+            questn = Random.Range(7, 9);
+
+        currentQuest = QuestMng.Instance.QuestList[questn];
+        yield return new WaitForSeconds(5);
+        QuestionMark.SetActive(false);
+
+        StartCoroutine(QuestionRoutin());
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

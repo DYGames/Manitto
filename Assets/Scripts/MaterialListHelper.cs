@@ -20,6 +20,7 @@ public class MaterialListHelper : MonoBehaviour
             GameObject material = GameObject.Instantiate(ElementPrefab);
             material.transform.SetParent(ContentParent);
             material.transform.localPosition = new Vector3(0, 40 - (elementheight * i), 0);
+            material.GetComponent<ObjectMaterial>().id = i;
         }
     }
 }

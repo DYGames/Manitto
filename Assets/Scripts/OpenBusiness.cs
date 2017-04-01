@@ -44,11 +44,7 @@ public class OpenBusiness : MonoBehaviour
 
         for (int i = 0; i < returnmaterial.Count; i++)
         {
-            Debug.Log("w");
-            Debug.Log(MaterialMng.Instance.MaterialList[(int)returnmaterial[i].y].qty);
-            Debug.Log((int)returnmaterial[i].x);
             MaterialMng.Instance.MaterialList[(int)returnmaterial[i].y].qty += (int)returnmaterial[i].x;
-            Debug.Log(MaterialMng.Instance.MaterialList[(int)returnmaterial[i].y].qty);
         }
 
 

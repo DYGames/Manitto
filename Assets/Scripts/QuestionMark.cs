@@ -21,5 +21,6 @@ public class QuestionMark : MonoBehaviour
     public void OnMouseDown()
     {
         FindObjectOfType<OpenQuest>().Open(transform.parent.GetComponent<People>().currentQuest);
+        gameObject.SetActive(false);
     }
 }
